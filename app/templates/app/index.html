@@ -1,0 +1,21 @@
+<html>
+<body>
+  <h4>Cat Facts</h4>
+  <ol id="cat-facts"></ol>
+</body>
+<script>
+  console.log("CALLING CAT API");
+  fetch("https://cat-fact.herokuapp.com/facts")
+    .then(res => res.json())
+    .then((json) => {
+      console.log(json);
+      const catFactDiv = document.getElementById("cat-facts");
+      json.all.forEach(fact => {
+        const catFact = document.createElement("LI");
+        catFact.appendChild(document.createTextNode(fact.text));
+        catFactDiv.appendChild(catFact)
+      })
+    })
+    .catch((err) => console.error(err));
+</script>
+</html>
